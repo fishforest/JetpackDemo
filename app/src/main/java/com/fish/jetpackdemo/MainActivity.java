@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.fish.jetpackdemo.lifecycle.LifeActivity;
 import com.fish.jetpackdemo.livedata.LiveDataActivity;
+import com.fish.jetpackdemo.uiflush.FlushUIActivity;
 import com.fish.jetpackdemo.uiflush.MyImageView;
 import com.fish.jetpackdemo.lifecycle.OriginalLifecycleActivity;
 import com.fish.jetpackdemo.viewmodel.ViewModelActivity;
@@ -58,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_test_livedata).setOnClickListener((v)->{
             LiveDataActivity.start(v.getContext());
+        });
+
+        findViewById(R.id.btn_test_flush_ui).setOnClickListener((v)->{
+            FlushUIActivity.start(v.getContext());
         });
 
     }

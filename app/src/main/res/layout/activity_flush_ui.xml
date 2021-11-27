@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_request"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="call Request"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="612dp" />
+
+    <com.fish.jetpackdemo.uiflush.MyTextView
+        android:id="@+id/tv"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="FlushUI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.fish.jetpackdemo.uiflush.MyTextView>
+
+    <com.fish.jetpackdemo.uiflush.MyImageView
+        android:id="@+id/iv"
+        app:layout_constraintTop_toBottomOf="@+id/tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.fish.jetpackdemo.uiflush.MyImageView>
+
+    <Button
+        android:id="@+id/btn_invalidate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="call Invalidate"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/btn_request"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

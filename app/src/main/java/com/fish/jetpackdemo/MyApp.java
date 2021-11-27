@@ -2,8 +2,16 @@ package com.fish.jetpackdemo;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewManager;
+import android.view.ViewParent;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

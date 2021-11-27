@@ -24,6 +24,7 @@
 
         <activity android:name=".lifecycle.LifeActivity"></activity>
         <activity android:name=".livedata.LiveDataActivity"/>
+        <activity android:name=".uiflush.FlushUIActivity"/>
     </application>
 
 </manifest>

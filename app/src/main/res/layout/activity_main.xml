@@ -53,17 +53,18 @@
         app:layout_constraintTop_toTopOf="parent"></Button>
 
     <Button
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/btn_original_lifecycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:text="test old LifeCycle"
         android:textAllCaps="false"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </Button>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></Button>
 
     <com.fish.jetpackdemo.uiflush.MyTextView
         android:id="@+id/textView"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_original_lifecycle"
         android:layout_width="wrap_content"
@@ -74,6 +75,7 @@
 
     <com.fish.jetpackdemo.uiflush.MyImageView
         android:id="@+id/iv"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="252dp"

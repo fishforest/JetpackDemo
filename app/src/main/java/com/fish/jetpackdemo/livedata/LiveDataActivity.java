@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.fish.jetpackdemo.R;
+import com.fish.jetpackdemo.global.SaveTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,8 @@ public class LiveDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_livedata);
 
-        visitViewModel = new ViewModelProvider(this).get(VisitViewModel.class);
+//        visitViewModel = SaveTest.getIns().getVisitViewModel(this);
+        visitViewModel = new ViewModelProvider(this).get(VisitViewModel .class);
         visitViewModel.getName().observe(this, (data)-> {
             Log.d(TAG, "observe name change:" + data);
         });
@@ -49,11 +51,11 @@ public class LiveDataActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_change_name).setOnClickListener((v)->{
             int a = (int)(Math.random() * 10);
-//            visitViewModel.getName().setValue("name" + a);
+            visitViewModel.getName().setValue("name" + a);
             new Thread(()->{
 
             }).start();
-            simpleLiveData.getName().setValue("singleName" + a);
+//            simpleLiveData.getName().setValue("singleName" + a);
         });
 
         findViewById(R.id.btn_change_age).setOnClickListener((v)->{

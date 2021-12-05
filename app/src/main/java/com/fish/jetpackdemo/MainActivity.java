@@ -11,7 +11,7 @@ import com.fish.jetpackdemo.lifecycle.LifeActivity;
 import com.fish.jetpackdemo.livedata.LiveDataActivity;
 import com.fish.jetpackdemo.uiflush.FlushUIActivity;
 import com.fish.jetpackdemo.uiflush.MyImageView;
-import com.fish.jetpackdemo.lifecycle.OriginalLifecycleActivity;
+import com.fish.jetpackdemo.activitylife.OriginalLifecycleActivity;
 import com.fish.jetpackdemo.viewmodel.ViewModelActivity;
 
 import androidx.appcompat.app.AppCompatActivity;

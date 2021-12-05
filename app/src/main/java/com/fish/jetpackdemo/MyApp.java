@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Parcelable;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,8 @@ public class MyApp extends Application {
     private final String TAG = "fish";
     private static MyApp myApp;
 
+    private int count = 0;
+
     @Override
     public void onCreate() {
         myApp = this;
@@ -33,6 +36,10 @@ public class MyApp extends Application {
             @Override
             public void onActivityStarted(@NonNull Activity activity) {
                 Log.d(TAG, "onActivityStarted");
+                if (count == 0) {
+                    Log.d(TAG, "App 回到前台");
+                }
+                count++;
             }
 
             @Override
@@ -48,6 +55,10 @@ public class MyApp extends Application {
             @Override
             public void onActivityStopped(@NonNull Activity activity) {
                 Log.d(TAG, "onActivityStopped");
+                count--;
+                if (count == 0) {
+                    Log.d(TAG, "App 退到后台");
+                }
             }
 
             @Override
@@ -60,6 +71,10 @@ public class MyApp extends Application {
                 Log.d(TAG, "onActivityDestroyed");
             }
         });
+    }
+
+    public boolean isForeground() {
+        return count > 0;
     }
 
     public static MyApp getInstance() {

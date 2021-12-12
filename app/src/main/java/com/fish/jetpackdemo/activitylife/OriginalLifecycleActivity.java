@@ -42,20 +42,24 @@ public class OriginalLifecycleActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_origin_lifecycle);
-        findViewById(R.id.btn_start_dialog).setOnClickListener((v)->{
+        findViewById(R.id.btn_start_dialog).setOnClickListener((v) -> {
             showDialog();
         });
-        findViewById(R.id.btn_start_window).setOnClickListener((v)->{
+        findViewById(R.id.btn_start_window).setOnClickListener((v) -> {
             showWindow();
         });
-        findViewById(R.id.btn_start_normal).setOnClickListener((v)->{
+        findViewById(R.id.btn_start_normal).setOnClickListener((v) -> {
             LifeActivity.start(v.getContext());
         });
-        findViewById(R.id.btn_start_small).setOnClickListener((v)->{
+        findViewById(R.id.btn_start_small).setOnClickListener((v) -> {
             SmallActivity.start(v.getContext());
-            handler.postDelayed(()->{
+            handler.postDelayed(() -> {
                 findViewById(R.id.edit).invalidate();
             }, 2000);
+        });
+
+        findViewById(R.id.btn_start_configure).setOnClickListener((v) -> {
+            ConfigureActivity.start(v.getContext());
         });
     }
 
@@ -180,7 +184,7 @@ public class OriginalLifecycleActivity extends AppCompatActivity {
         textView.setHeight(1000);
         textView.setBackground(new ColorDrawable(Color.RED));
         textView.setText("hello windowManager");
-        textView.setOnClickListener((v)->{
+        textView.setOnClickListener((v) -> {
             wm.removeViewImmediate(textView);
         });
 

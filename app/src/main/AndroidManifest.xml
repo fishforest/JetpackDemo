@@ -28,6 +28,7 @@
         <activity android:name=".livedata.LiveDataActivity"/>
         <activity android:name=".uiflush.FlushUIActivity"/>
         <activity android:name=".activitylife.SmallActivity" android:theme="@style/MyTranslucentTheme"/>
+        <activity android:name=".activitylife.ConfigureActivity" />
     </application>
 
 </manifest>

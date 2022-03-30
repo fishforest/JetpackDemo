@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.fish.jetpackdemo.R;
 import com.fish.jetpackdemo.global.SaveTest;
@@ -62,6 +63,20 @@ public class LiveDataActivity extends AppCompatActivity {
             handler.postDelayed(runnable, 2000);
         });
 
+        findViewById(R.id.original_callback).setOnClickListener((v)->{
+            NetUtil.INSTANCE.getUserInfo(new NetUtil.InfoNotify() {
+                @Override
+                public void notify(int a) {
+                    runOnUiThread(()->{
+                        //如果Activity 正在销毁或者已经销毁，那就没必要Toast了
+                        if (!LiveDataActivity.this.isFinishing() && !LiveDataActivity.this.isDestroyed()) {
+                            Toast.makeText(LiveDataActivity.this, "a=" + a, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+        });
+
         handleSingleLiveData();
     }
 
@@ -83,5 +98,11 @@ public class LiveDataActivity extends AppCompatActivity {
         simpleLiveData.getName().observe(this, (data)-> {
             Log.d(TAG, "singleLiveData name:" + data);
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        NetUtil.INSTANCE.removeListener();
     }
 }

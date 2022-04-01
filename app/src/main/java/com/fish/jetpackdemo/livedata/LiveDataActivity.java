@@ -6,17 +6,30 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.fish.jetpackdemo.R;
 import com.fish.jetpackdemo.global.SaveTest;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.arch.core.executor.ArchTaskExecutor;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleEventObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import static androidx.lifecycle.Lifecycle.State.DESTROYED;
+import static androidx.lifecycle.Lifecycle.State.STARTED;
 
 public class LiveDataActivity extends AppCompatActivity {
 
@@ -51,16 +64,30 @@ public class LiveDataActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_change_name).setOnClickListener((v)->{
+//            new Thread(()->{
+//                int a = (int)(Math.random() * 10);
+//                //获取LiveData实例，更新LiveData
+//                simpleLiveData.getName().postValue("singleName:" + a);
+//            }).start();
             int a = (int)(Math.random() * 10);
-            visitViewModel.getName().setValue("name" + a);
-            new Thread(()->{
+            //获取LiveData实例，更新LiveData
+            simpleLiveData.getName().postValue("singleName:" + a);
 
-            }).start();
-//            simpleLiveData.getName().setValue("singleName" + a);
+            GlobalLiveData.getInstance().getSimpleLiveData().getName().setValue("from global");
         });
 
         findViewById(R.id.btn_change_age).setOnClickListener((v)->{
-            handler.postDelayed(runnable, 2000);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    int count = 10;
+                    while (count > 0) {
+                        LiveDataPostUtil.postValue(simpleLiveData.getName(), count + "");
+                        count--;
+                    }
+                }
+            }).start();
+//            handler.postDelayed(runnable, 2000);
         });
 
         findViewById(R.id.original_callback).setOnClickListener((v)->{
@@ -77,7 +104,28 @@ public class LiveDataActivity extends AppCompatActivity {
             });
         });
 
+        findViewById(R.id.btn_sticky).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GlobalLiveData.getInstance().getSimpleLiveData().getEasyName().setValue("easy name");
+            }
+        });
+
         handleSingleLiveData();
+
+        GlobalLiveData.getInstance().getSimpleLiveData().getName().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Toast.makeText(LiveDataActivity.this, "global name:" + s, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        GlobalLiveData.getInstance().getSimpleLiveData().getEasyName().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Toast.makeText(LiveDataActivity.this, "global easy name:" + s, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private final Runnable runnable = new Runnable() {
@@ -94,10 +142,17 @@ public class LiveDataActivity extends AppCompatActivity {
 
 
     private void handleSingleLiveData() {
+        //构造LiveData
         simpleLiveData = new SimpleLiveData();
-        simpleLiveData.getName().observe(this, (data)-> {
-            Log.d(TAG, "singleLiveData name:" + data);
-        });
+        //获取LiveData实例
+//        simpleLiveData.getName().observe(this, (data)-> {
+//            //监听LiveData，此处的data参数类型即是为setValue(name)时name 的类型-->String
+//            Toast.makeText(LiveDataActivity.this, "singleLiveData name:" + data, Toast.LENGTH_SHORT).show();
+//        });
+
+//        simpleLiveData.getName().observeForever(s -> {
+//            Toast.makeText(LiveDataActivity.this, "singleLiveData name:" + s, Toast.LENGTH_SHORT).show();
+//        });
     }
 
     @Override
@@ -105,4 +160,5 @@ public class LiveDataActivity extends AppCompatActivity {
         super.onDestroy();
         NetUtil.INSTANCE.removeListener();
     }
+
 }

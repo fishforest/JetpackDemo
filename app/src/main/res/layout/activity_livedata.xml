@@ -7,10 +7,20 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/btn_sticky"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="376dp"
+        android:text="粘性事件通知"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/original_callback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="376dp"
         android:text="传统回调"
         app:layout_constraintStart_toStartOf="parent"

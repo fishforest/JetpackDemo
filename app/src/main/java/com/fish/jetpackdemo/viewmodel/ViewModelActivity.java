@@ -9,9 +9,8 @@ import android.widget.TextView;
 
 import com.fish.jetpackdemo.R;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 public class ViewModelActivity extends AppCompatActivity {
@@ -19,6 +18,8 @@ public class ViewModelActivity extends AppCompatActivity {
     private MoneyViewModel moneyViewModel;
 
     private MyViewModel myViewModel;
+
+    private LiveDataViewModel liveDataViewModel;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, ViewModelActivity.class);
@@ -46,6 +47,18 @@ public class ViewModelActivity extends AppCompatActivity {
 
             myViewModel.setName("我的 ViewModel 改变");
             tvVM.setText(myViewModel.getName());
+
+            liveDataViewModel.getLiveData().setValue("LiveData+ViewModel 改变");
+        });
+
+
+        TextView textView = findViewById(R.id.tv_livedataviewmodel);
+        liveDataViewModel = new ViewModelProvider(this).get(LiveDataViewModel.class);
+        liveDataViewModel.getLiveData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                textView.setText(s);
+            }
         });
     }
 

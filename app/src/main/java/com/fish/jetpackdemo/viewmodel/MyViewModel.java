@@ -1,10 +1,8 @@
 package com.fish.jetpackdemo.viewmodel;
 
-import androidx.lifecycle.ViewModel;
-
-public class MoneyViewModel extends ViewModel {
+public class MyViewModel {
     private int money;
-    private String name = "官方ViewModel";
+    private String name = "我的ViewModel";
 
     public int getMoney() {
         return money;

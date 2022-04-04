@@ -22,7 +22,7 @@
         <activity android:name=".activitylife.OriginalLifecycleActivity"
             android:exported="true"/>
 
-        <activity android:name=".viewmodel.ViewModelActivity" android:configChanges="orientation|screenSize"></activity>
+        <activity android:name=".viewmodel.ViewModelActivity" ></activity>
 
         <activity android:name=".lifecycle.LifeActivity"></activity>
         <activity android:name=".livedata.LiveDataActivity"/>

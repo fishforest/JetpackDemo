@@ -13,7 +13,7 @@ import androidx.activity.ComponentActivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.DefaultLifecycleObserver;
+//import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -38,8 +38,8 @@ public class LifeActivity extends ComponentActivity {
         LifecycleObserver observerV7 = new MyObserver7();
         getLifecycle().addObserver(observerV7);
 
-        LifecycleObserver observerV8 = new MyObserver8();
-        getLifecycle().addObserver(observerV8);
+//        LifecycleObserver observerV8 = new MyObserver8();
+//        getLifecycle().addObserver(observerV8);
 
         lifecyclePresenter = new LifecyclePresenter();
     }
@@ -53,12 +53,12 @@ public class LifeActivity extends ComponentActivity {
     }
 
     //Java8 方式
-    class MyObserver8 implements DefaultLifecycleObserver {
-        @Override
-        public void onStart(LifecycleOwner owner) {
-            Log.d(TAG, "start");
-        }
-    }
+//    class MyObserver8 implements DefaultLifecycleObserver {
+//        @Override
+//        public void onStart(LifecycleOwner owner) {
+//            Log.d(TAG, "start");
+//        }
+//    }
 
     @Override
     protected void onStart() {

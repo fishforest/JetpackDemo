@@ -22,7 +22,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="FlushUI"
+        android:text="默认文本"
+        android:background="@color/teal_200"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </com.fish.jetpackdemo.uiflush.MyTextView>
@@ -46,5 +47,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv" />
+
+
+    <com.fish.jetpackdemo.uiflush.MyView
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv"
+        android:background="@color/black"
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+    </com.fish.jetpackdemo.uiflush.MyView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

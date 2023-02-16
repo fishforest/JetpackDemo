@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.TextView;
 
+import com.fish.jetpackdemo.dialog.MyFragment;
+import com.fish.jetpackdemo.dialog.Purefragment;
 import com.fish.jetpackdemo.lifecycle.LifeActivity;
 import com.fish.jetpackdemo.livedata.LiveDataActivity;
 import com.fish.jetpackdemo.uiflush.FlushUIActivity;
@@ -15,6 +17,9 @@ import com.fish.jetpackdemo.activitylife.OriginalLifecycleActivity;
 import com.fish.jetpackdemo.viewmodel.ViewModelActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,9 +67,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_test_flush_ui).setOnClickListener((v)->{
-            FlushUIActivity.start(v.getContext());
+//            FlushUIActivity.start(v.getContext());
+
+//            (new MyFragment()).show(MainActivity.this.getSupportFragmentManager(), "fish");
+
+            addFragment(new Purefragment());
         });
 
+    }
+
+    private void addFragment(Fragment fragment) {
+//        list.add(fragment);
+        //获取Fragment管理对象
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();   // 开启一个事务
+        //添加fragment
+        transaction.add(R.id.container, fragment);
+        //提交动作
+        transaction.commit();
     }
 
     @Override

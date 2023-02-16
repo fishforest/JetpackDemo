@@ -26,8 +26,8 @@ public class FlushUIActivity extends AppCompatActivity {
         @Override
         public void run() {
             Log.d("fish", "request layout call");
-            textView.invalidate();
-            textView.postDelayed(this, 1000);
+            textView.requestLayout();
+            textView.postDelayed(this, 2000);
         }
     };
 
@@ -48,8 +48,8 @@ public class FlushUIActivity extends AppCompatActivity {
         textView = findViewById(R.id.tv);
 
         findViewById(R.id.btn_request).setOnClickListener((v)->{
-//            textView.postDelayed(requestRunnable, 1000);
-            textView.invalidate();
+            textView.postDelayed(requestRunnable, 10000);
+//            textView.invalidate();
         });
 
         findViewById(R.id.btn_invalidate).setOnClickListener((v)->{

@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.TextView;
 
+import com.fish.jetpackdemo.dialog.BottomDialogFragment;
 import com.fish.jetpackdemo.dialog.MyFragment;
 import com.fish.jetpackdemo.dialog.Purefragment;
 import com.fish.jetpackdemo.lifecycle.LifeActivity;
@@ -63,15 +64,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btn_test_livedata).setOnClickListener((v)->{
-            LiveDataActivity.start(v.getContext());
+//            LiveDataActivity.start(v.getContext());
+            (new BottomDialogFragment()).show(MainActivity.this.getSupportFragmentManager(), "fish");
+
         });
 
         findViewById(R.id.btn_test_flush_ui).setOnClickListener((v)->{
 //            FlushUIActivity.start(v.getContext());
 
-//            (new MyFragment()).show(MainActivity.this.getSupportFragmentManager(), "fish");
+            (new MyFragment()).show(MainActivity.this.getSupportFragmentManager(), "fish");
 
-            addFragment(new Purefragment());
+//            addFragment(new Purefragment());
         });
 
     }

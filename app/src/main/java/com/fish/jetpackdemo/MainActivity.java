@@ -1,10 +1,13 @@
 package com.fish.jetpackdemo;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 import android.widget.TextView;
 
 import com.fish.jetpackdemo.dialog.BottomDialogFragment;
@@ -16,8 +19,12 @@ import com.fish.jetpackdemo.uiflush.FlushUIActivity;
 import com.fish.jetpackdemo.uiflush.MyImageView;
 import com.fish.jetpackdemo.activitylife.OriginalLifecycleActivity;
 import com.fish.jetpackdemo.viewmodel.ViewModelActivity;
+import com.fish.shellutil.ShellUtil;
+
+import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -75,6 +82,27 @@ public class MainActivity extends AppCompatActivity {
             (new MyFragment()).show(MainActivity.this.getSupportFragmentManager(), "fish");
 
 //            addFragment(new Purefragment());
+        });
+
+        findViewById(R.id.btn_test_su).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int granted = ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                if (granted != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+                }
+//                new ShellUtil() {
+//
+//                    @Override
+//                    protected ArrayList<String> getCommandsToExecute() {
+//                        ArrayList<String> list = new ArrayList<>();
+//                        list.add("ls /data/data");
+//                        return list;
+//                    }
+//                }.execute();
+
+                ShellUtil.execSuCmd("ls /data/data");
+            }
         });
 
     }

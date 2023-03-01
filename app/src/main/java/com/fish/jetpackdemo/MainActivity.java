@@ -101,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
 //                    }
 //                }.execute();
 
-                ShellUtil.execSuCmd("ls /data/data");
+                ShellUtil.execSuCmd("ls /data");
+//                ShellUtil.execute("ls /data/data");
             }
         });
 

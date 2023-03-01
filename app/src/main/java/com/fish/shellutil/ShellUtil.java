@@ -201,4 +201,29 @@ public abstract class ShellUtil {
         }
         return out;
     }
+
+    public static BufferedReader execute(String cmd) {
+        BufferedReader reader;
+        try {
+            Process process = Runtime.getRuntime().exec("su");
+            DataOutputStream os = new DataOutputStream(
+                    process.getOutputStream());
+            os.writeBytes(cmd + "\n");
+            os.writeBytes("exit\n");
+            reader = new BufferedReader(new InputStreamReader(
+                    process.getInputStream()));
+            String err = (new BufferedReader(new InputStreamReader(
+                    process.getErrorStream()))).readLine();
+            os.flush();
+
+            if (process.waitFor() != 0 || (!"".equals(err) && null != err)) {
+                Log.e("Root Error, cmd: " + cmd, err);
+                return null;
+            }
+            return reader;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

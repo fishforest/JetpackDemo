@@ -12,4 +12,9 @@ public class FFVM extends ViewModel {
    public void setSchool(String school) {
       this.school = school;
    }
+
+   @Override
+   protected void onCleared() {
+      super.onCleared();
+   }
 }

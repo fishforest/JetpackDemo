@@ -12,4 +12,9 @@ public class FishViewModel extends ViewModel {
    public void setName(String name) {
       this.name = name;
    }
+
+   @Override
+   protected void onCleared() {
+      super.onCleared();
+   }
 }

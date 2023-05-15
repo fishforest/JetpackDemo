@@ -40,7 +40,7 @@ public class OriginalLifecycleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(null);
         setContentView(R.layout.activity_origin_lifecycle);
         findViewById(R.id.btn_start_dialog).setOnClickListener((v) -> {
             showDialog();

@@ -1,7 +1,9 @@
 package com.fish.jetpackdemo.fragment.dialogFragment;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 
 import com.fish.jetpackdemo.R;
@@ -9,10 +11,14 @@ import com.fish.jetpackdemo.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.activity.contextaware.OnContextAvailableListener;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.savedstate.SavedStateRegistry;
 import androidx.viewpager2.widget.ViewPager2;
 
 public class FishFragmentActivity extends AppCompatActivity {
@@ -28,8 +34,8 @@ public class FishFragmentActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_fragment);
-        viewModel = new ViewModelProvider(this).get(FishViewModel.class);
-        viewModel.setName("fuck");
+//        viewModel = new ViewModelProvider(this).get(FishViewModel.class);
+//        viewModel.setName("fuck");
 
 //        FishDialogFragment fishDialogFragment = new FishDialogFragment();
 //        fishDialogFragment.show(getSupportFragmentManager(), "dd");
@@ -85,16 +91,16 @@ public class FishFragmentActivity extends AppCompatActivity {
 
 
         viewPager2 = findViewById(R.id.vp);
-        viewPager2.setVisibility(View.GONE);
+//        viewPager2.setVisibility(View.GONE);
         List<FishPureFragment> list = new ArrayList<>();
 
-//        for (int i = 0; i < 10; i++) {
-//            FishPureFragment fishPureFragment1 = new FishPureFragment("fragment" + i);
-//            list.add(fishPureFragment1);
-//        }
+        for (int i = 0; i < 10; i++) {
+            FishPureFragment fishPureFragment1 = new FishPureFragment("fragment" + i);
+            list.add(fishPureFragment1);
+        }
         VPAdapter vpAdapter = new VPAdapter(this, list);
-//        viewPager2.setAdapter(vpAdapter);
-//        viewPager2.setOffscreenPageLimit(2);
+        viewPager2.setAdapter(vpAdapter);
+        viewPager2.setOffscreenPageLimit(1);
 //        viewPager2.setCurrentItem(1,false);
     }
 

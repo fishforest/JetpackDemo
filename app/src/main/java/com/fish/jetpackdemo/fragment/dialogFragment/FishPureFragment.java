@@ -1,7 +1,6 @@
 package com.fish.jetpackdemo.fragment.dialogFragment;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +29,7 @@ public class FishPureFragment extends Fragment {
         ffvm = new ViewModelProvider(this).get(FFVM.class);
         MyGroup myGroup = new MyGroup(getContext());
         MyView myView = new MyView(getContext());
-        myView.setText(ffvm.getSchool());
+        myView.setText(str);
         myView.setTextSize(30);
         myGroup.addView(myView);
         myGroup.setAlpha(0.5f);
@@ -77,3 +76,5 @@ public class FishPureFragment extends Fragment {
         super.onDetach();
     }
 }
+
+

@@ -19,14 +19,6 @@ public class VPAdapter extends FragmentStateAdapter {
         this.list = list;
     }
 
-    public VPAdapter(@NonNull Fragment fragment) {
-        super(fragment);
-    }
-
-    public VPAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
-        super(fragmentManager, lifecycle);
-    }
-
     @NonNull
     @Override
     public Fragment createFragment(int position) {

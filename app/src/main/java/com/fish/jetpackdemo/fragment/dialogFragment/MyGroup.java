@@ -9,4 +9,14 @@ public class MyGroup extends FrameLayout {
     public MyGroup(@NonNull Context context) {
         super(context);
     }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+    }
 }
